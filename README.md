@@ -8,3 +8,5 @@ The fonts are dynamically scalable with minimal quality losses while still being
 This project is based on the work of Viktor Chlumský found in his MSDF-Generator Projects, specifically [MSDF-Atlas-Gen](https://github.com/Chlumsky/msdf-atlas-gen).
 
 Since this is still work in progress and it is actually my first public repository, I am thankful for any kind of productive feedback!
+
+Instructions will follow later today...
