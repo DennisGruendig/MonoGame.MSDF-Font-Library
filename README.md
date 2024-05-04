@@ -1,4 +1,4 @@
-# MonoGame.MSDF_Font_Library
+# MonoGame.MSDF-Font-Library
 A font library which allows the MonoGame content manager to import font files directly, so that they can be rendered, using a [Multi-Channel Distance Fields](http://inter-illusion.com/assets/I2SmartEdgeManual/SmartEdge.html?MultiChannelDistanceFields.html) Shader.
 
 The fonts are dynamically scalable with minimal quality losses while still being relatively light weight on the processor, since most of the calculations are Computed in a shader.
