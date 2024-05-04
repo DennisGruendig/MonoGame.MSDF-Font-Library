@@ -132,7 +132,6 @@ namespace MSDF_Font_Library.Content
             return 1 / FontSize * ActualLineHeight * fontHeight;
         }
 
-
         /// <summary>
         /// Measure the size of a text string
         /// </summary>
@@ -140,12 +139,65 @@ namespace MSDF_Font_Library.Content
         /// <param name="fontHeight"></param>
         /// <param name="wrap"></param>
         /// <param name="maxWidth"></param>
-        /// <returns></returns>
         public Vector2 MeasureString(string text, float fontHeight, WrapBehaviour wrap = WrapBehaviour.Default, float maxWidth = 0)
         {
             float scale = GetScale(fontHeight);
             var lines = WrapString(text, scale, wrap, maxWidth);
             return new Vector2(lines.Max(x => x.Width), lines.Length * ActualLineHeight * scale);
+        }
+
+        /// <summary>
+        /// Measure the bounds rectangle of a text string
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="text"></param>
+        /// <param name="fontHeight"></param>
+        /// <param name="wrap"></param>
+        /// <param name="maxWidth"></param>
+        public RectangleF MeasureString(Vector2 position, string text, float fontHeight, TextAlignment alignment = TextAlignment.BaseLeft, WrapBehaviour wrap = WrapBehaviour.Default, float maxWidth = 0)
+        {
+            float scale = GetScale(fontHeight);
+            var lines = WrapString(text, scale, wrap, maxWidth);
+            Vector2 size = new(lines.Max(x => x.Width), ActualLineHeight * scale * lines.Length);
+
+            switch (alignment)
+            {
+                default: break;
+                case TextAlignment.MiddleLeft: 
+                case TextAlignment.MiddleCenter:
+                case TextAlignment.MiddleRight:
+                    position.Y -= size.Y * 0.5f;
+                    break;
+                case TextAlignment.BaseLeft:
+                case TextAlignment.BaseCenter:
+                case TextAlignment.BaseRight:
+                    position.Y -= ActualBaseLine * scale;
+                    break;
+                case TextAlignment.BottomLeft:
+                case TextAlignment.BottomCenter:
+                case TextAlignment.BottomRight:
+                    position.Y -= size.Y;
+                    break;
+            }
+
+            switch (alignment)
+            {
+                default: break;
+                case TextAlignment.BaseCenter: 
+                case TextAlignment.TopCenter: 
+                case TextAlignment.MiddleCenter: 
+                case TextAlignment.BottomCenter:
+                    position.X -= size.X * 0.5f; 
+                    break;
+                case TextAlignment.BaseRight: 
+                case TextAlignment.TopRight:
+                case TextAlignment.MiddleRight:
+                case TextAlignment.BottomRight:
+                    position.X -= size.X;
+                    break;
+            }
+
+            return new RectangleF(position, size);
         }
 
         /// <summary>

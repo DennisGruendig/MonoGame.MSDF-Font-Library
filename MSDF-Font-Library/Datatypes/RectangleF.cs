@@ -24,6 +24,9 @@ namespace MSDF_Font_Library.Datatypes
         public float Width { get; set; }
         public float Height { get; set; }
 
+        public readonly Vector2 Position => new Vector2(X, Y);
+        public readonly Vector2 Size => new Vector2(Width, Height);
+
         public static RectangleF operator +(RectangleF value1, RectangleF value2)
         {
             value1.X += value2.X;

@@ -119,7 +119,7 @@ namespace MSDF_Font_Library.Rendering
             float scale = font.GetScale(height);
             TextLine[] lines = font.WrapString(text, scale, wrap, wrapWidth);
             if (lines.Length == 0) return;
-            Vector2 size = new(lines[0].Width, lines.Length * font.ActualHeight);
+            Vector2 size = new(lines.Max(x => x.Width), font.ActualLineHeight * scale * lines.Length);
             int indexStart = _batchItemCount;
             float offsetH = 0;
 
@@ -130,7 +130,7 @@ namespace MSDF_Font_Library.Rendering
                 case TextAlignment.MiddleLeft:
                 case TextAlignment.MiddleCenter:
                 case TextAlignment.MiddleRight:
-                    position.Y -= size.Y * 0.5f * scale;
+                    position.Y -= size.Y * 0.5f;
                     break;
 
                 case TextAlignment.BaseLeft:
@@ -142,7 +142,7 @@ namespace MSDF_Font_Library.Rendering
                 case TextAlignment.BottomLeft:
                 case TextAlignment.BottomCenter:
                 case TextAlignment.BottomRight:
-                    position.Y -= size.Y * scale;
+                    position.Y -= size.Y;
                     break;
             }
 
