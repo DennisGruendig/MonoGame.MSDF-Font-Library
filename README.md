@@ -15,15 +15,15 @@ Since this is still work in progress and it is actually my first public reposito
 At the current state, the project can only be used by including it in your solution. You need to reference it in your project so that you can use it's custom classes during runtime.
 
 ## Import Font Files
-Build the project and reference the compiled *.dll* in your MonoGame Content Manager. Now you should be able to include *.ttf* and *.otf* files as regular content, which will then be handled by the content manager. As of now, the content processor will create temporary files, convert them to binary data and then delete them. If you set the parameter *"Keep Temporary"* to *true*, the files will not be deleted, so you can check them out for debugging.
+Build the project and reference the compiled `.dll` in your MonoGame Content Manager. Now you should be able to include `.ttf` and `.otf` files as regular content, which will then be handled by the content manager. As of now, the content processor will create temporary files, convert them to binary data and then delete them. If you set the parameter `"Keep Temporary"` to `true`, the files will not be deleted, so you can check them out for debugging.
 
-During runtime, you can use the content manager to load the fonts into *FieldFont* classes.
+During runtime, you can use the content manager to load the fonts into `FieldFont` classes.
 ```cs
 FieldFont font = Content.Load<FieldFont>("<Your content name>");
 ```
 
 ## Import Shader
-Drawing the fonts requires the file *"MSDFShader.fx"*, located in the *Shader* folder. Just include it in your content manager and make sure to load it during runtime.
+Drawing the fonts requires the file `MSDFShader.fx`, located in the [Shader](/MSDF%20Font%20Library/Shader) folder. Just include it in your content manager and make sure to load it during runtime.
 
 ## Batching Graphics
-The final step to drawing fonts is the *FieldBatch* class. It's function is very similar to the built in *SpriteBatch* class, it needs to be constructed with *GraphicsDevice* and *MSDFShader*. Once constructed, you can use it inside your *Draw()* method to draw strings to the screen. Just make sure to call *Begin()* and *End()*, just like you would with a *SpriteBatch*.
+The final step to drawing fonts is the `FieldBatch` class. It's function is very similar to the built in `SpriteBatch` class, it needs to be constructed with `GraphicsDevice` and `MSDFShader`. Once constructed, you can use it inside your `Draw()` method to draw strings to the screen. Just make sure to call `Begin()` and `End()`, just like you would with a `SpriteBatch`.
