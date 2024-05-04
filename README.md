@@ -23,7 +23,7 @@ FieldFont font = Content.Load<FieldFont>("<Your content name>");
 ```
 
 ## Import Shader
-Drawing the fonts requires the file `MSDFShader.fx`, located in the [Shader](/MSDF%20Font%20Library/Shader) folder. Just include it in your content manager and make sure to load it during runtime.
+Drawing the fonts requires the file `MSDFShader.fx`, located in the [Shader](/MSDF-Font-Library/Shader) folder. Just include it in your content manager and make sure to load it during runtime.
 
 ## Batching Graphics
 The final step to drawing fonts is the `FieldBatch` class. It's function is very similar to the built in `SpriteBatch` class, it needs to be constructed with `GraphicsDevice` and `MSDFShader`. Once constructed, you can use it inside your `Draw()` method to draw strings to the screen. Just make sure to call `Begin()` and `End()`, just like you would with a `SpriteBatch`.
